@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>Register - Form validation</title>
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <div class="main">
+        <form action="" method="post" id="register">
+            <h3 class="heading">Đăng ký thành viên</h3>
+            <fieldset class="form-group">
+                <label for="fullname" class="form-label">Họ và Tên</label>
+                <input id="fullname" class="control" name="fullname" type="text" placeholder="VD: Huy Huấn"/>
+                <span class="form-message"></span>
+            </fieldset>
+
+            <fieldset class="form-group">
+                <label for="email" class="form-label">Email</label>
+                <input id="email" class="control"  name="email" type="text" placeholder="VD: huan@gmail.com"/>
+                <span class="form-message"></span>
+            </fieldset>
+
+            <fieldset class="form-group">
+                <label for="password" class="form-label">Mật khẩu</label>
+                <input id="password" class="control"  name="password" type="password" placeholder="Nhập mật khẩu"/>
+                <span class="form-message"></span>
+            </fieldset>
+
+            
+
+            <fieldset class="form-group">
+                <label for="password-confirm" class="form-label">Nhập lại mật khẩu</label>
+                <input id="password-confirm" class="control"  name="password-confirm" type="password" placeholder="Nhập lại mật khẩu"/>
+                <span class="form-message"></span>
+            </fieldset>
+
+            <fieldset class="form-group">
+                <label for="avatar" class="form-label">Ảnh đại diện</label>
+                <input id="avatar" class="control"  name="avatar" type="file"/>
+                <span class="form-message"></span>
+            </fieldset>
+
+            <fieldset class="form-group">
+                <label class="form-label">Giới tính</label>
+                <input id="male" class="control"  name="gender" value="male" type="radio"/>
+                <label for="male" class="form-label">Nam</label>
+                <input id="female" class="control"  name="gender" value="female" type="radio"/>
+                <label for="female" class="form-label">Nữ</label>
+                <input id="other" class="control"  name="gender" value="other" type="radio"/>
+                <label for="other" class="form-label">Khác</label>
+                <span class="form-message"></span>
+            </fieldset>
+
+            <fieldset class="form-group">
+                <label class="form-label">Giới tính:</label>
+                <select id="gender">
+                    <option value="" selected> ---Chọn Giới Tính---</option>
+                    <option value="male" > Nam</option>
+                    <option value="female"> Nữ</option>
+                    <option value="other"> Khác</option>
+                </select>
+                <span class="form-message"></span>
+            </fieldset>
+<!-- 
+            <div class="form-group">
+                <input id="check" class="control"  name="check" value="check" type="checkbox"/>
+                <label for="check" class="form-label">Bạn có đồng ý với điều khoản của chúng tôi?</label>
+                <span class="form-message"></span>
+            </div> -->
+            <button id="btn" >Đăng Ký</button>
+            <!-- <input id="btn" name="btn" type="button" value="Đăng Ký"/> -->
+        </form>
+    </div>
+    <a class="home" href="http://bit.ly/hghuan"><i class='bx bxs-home'></i></a>
+    <script src="js/validator.js"></script>
+    <script>
+        Validator({
+            form : '#register',
+            errorSelector : '.form-message',
+            formGroupSelector : '.form-group',
+            rules : [
+                Validator.isRequired('#fullname'),
+                Validator.isRequired('#email', 'Vui lòng nhập trường này!'),
+                Validator.isEmail('#email'),
+                Validator.minLength('#password'),
+                Validator.isRequired('#avatar', 'Vui lòng chọn File!'),
+                Validator.isRequired('input[name=gender]', 'Vui lòng chọn giới tính!'),
+                Validator.isRequired('#gender', 'Vui lòng chọn giới tính!'),
+                Validator.isRequired('#password-confirm', 'Vui lòng nhập trường này!'),
+                Validator.confirmPass('#password-confirm', function(){
+                    return document.querySelector('#register #password').value;
+                }, 'Mật khẩu nhập lại không chính xác!')
+            ],
+            onSubmit : function(data){
+                //call API
+                console.log(data);
+            }
+        });
+    </script>
+</body>
+</html>

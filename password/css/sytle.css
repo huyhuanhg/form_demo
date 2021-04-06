@@ -1,0 +1,60 @@
+:root{
+    --main-bg-color:#f0f0f0;
+    --form-bg-color:#fff;
+    --input-bg-color:#eee;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--main-bg-color);
+}
+.form{
+    width: 300px;
+    height: 300px;
+    background-color: var(--form-bg-color);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 50px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+        0 10px 10px rgba(0, 0, 0, 0.22);
+}
+input{
+    background-color: var(--input-bg-color);
+    padding: 12px;
+    border: none;
+    margin: 8px;
+    width: 100%;
+    border-radius: 15px;
+}
+.pw-toggle{
+    position: absolute;
+    top: 50%;
+    right: 50px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+.home{
+    display: block;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+}
+.home i{
+    color: white;
+    z-index: 100;
+    padding: 5px 10px;
+    font-size: 30px;
+    background-color: rgba(0, 0, 0, .5);
+    border-radius: 5px;
+}
+.home:hover i{
+    color: black;
+    background-color: white;
+}
